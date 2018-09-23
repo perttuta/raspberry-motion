@@ -1,0 +1,10 @@
+[Unit]
+Description=AutoSSH tunnel service for creating reverse SSH to EC2
+After=network.target
+
+[Service]
+Environment="AUTOSSH_GATETIME=0"
+ExecStart=/usr/bin/autossh -M 0 -o "ExitOnForwardFailure=yes" -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -NR 10022:localhost:22 pitunnel@your.ec2.host.com -i /home/pi/pitunnel_id_rsa
+
+[Install]
+WantedBy=multi-user.target

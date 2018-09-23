@@ -1,0 +1,17 @@
+# Put this file in /etc/systemd/system
+# sudo chmod ugo+x /etc/systemd/system/status_mail_on_start.service
+# test with sudo systemctl start status_mail_on_start.service
+# then run sudo systemctl enable status_mail_on_start.service
+# to run on startup
+ 
+[Unit]
+Description=Send status mail on system start
+Before=multi-user.target
+After=network.target photo_on_start.service
+ 
+[Service]
+Type=forking
+ExecStart=/bin/bash -e /home/pi/status_mail_on_start.sh
+ 
+[Install]
+WantedBy=multi-user.target

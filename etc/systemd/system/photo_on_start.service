@@ -1,0 +1,17 @@
+# Put this file in /etc/systemd/system
+# sudo chmod ugo+x /etc/systemd/system/photo_on_start.service
+# test with sudo systemctl start photo_on_start.service
+# then run sudo systemctl enable photo_on_start.service
+# to run on startup
+ 
+[Unit]
+Description=Take photo on system start
+Before=motion.service
+After=raspi-config.service
+ 
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -e /home/pi/photo_on_start.sh
+ 
+[Install]
+WantedBy=multi-user.target
