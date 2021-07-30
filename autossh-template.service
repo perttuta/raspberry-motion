@@ -1,0 +1,11 @@
+[Unit]
+Description=AutoSSH tunnel service for creating reverse SSH to EC2 (generated configuration)
+After=network.target
+
+[Service]
+Environment="AUTOSSH_GATETIME=0"
+EDIT_HERE
+
+[Install]
+WantedBy=multi-user.target
+
